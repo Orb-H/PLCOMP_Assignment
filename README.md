@@ -30,13 +30,34 @@ fact 	::= num
 word	::= ([a-z] | [A-Z])* ;
 num     ::= [0-9]*
 ```
-<!-- ### Given Grammar to Regular Grammar
+### Modified Grammar
+```
+prog    ::= word "(" ")" block ;
+block   ::= "{" slist "}";
+slist   ::= slist stat
+        |   stat ;
+stat 	::= IF "(" cond ")" THEN block ELSE block
+        |   WHILE "(" cond ")" block
+        |   word "=" expr ";"
+        |   ;
+cond 	::= expr ">" expr
+        |   expr "<" expr ;
+expr 	::= fact
+        |   expr "+" fact ;	
+fact 	::= num
+        |   word ;
+word	::= ([a-z] | [A-Z])+ ;
+num     ::= [0-9]+
+```
+1. remove ε at block: ε can cause function without its body.
+2. change * to + at word and num: * can cause empty word and num, so that statements like 3+++4 is a correct grammar.
+<!-- ### Convert to Regular Grammar
  - num
 
 Remove Kleene star
 ```
 num     ->  [0-9] num
-num     ->  ε
+num     ->  [0-9]
 ```
  - word
 
