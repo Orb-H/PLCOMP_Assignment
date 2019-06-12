@@ -17,8 +17,8 @@ block	::= "{" slist "}"
         |   ;
 slist 	::= slist stat
         |   stat ;
-stat 	::= IF "("cond ")"THEN block ELSE block
-        |   WHILE "("cond")" block
+stat 	::= IF "(" cond ")" THEN block ELSE block
+        |   WHILE "(" cond ")" block
         |   word "=" expr ";"
         |   ;
 cond 	::= expr ">" expr
