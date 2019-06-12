@@ -10,7 +10,7 @@ Team Assignment for 'Programming Language and Compiler' class
  - Code Generator
 
 ## Scanner
-### Grammar
+### Given Grammar
 ```
 prog    ::= word "(" ")" block ;
 block	::= "{" slist "}"	
@@ -30,7 +30,32 @@ fact 	::= num
 word	::= ([a-z] | [A-Z])* ;
 num     ::= [0-9]*
 ```
-### Each Grammar to NFA
+<!-- ### Given Grammar to Regular Grammar
+ - num
+
+Remove Kleene star
+```
+num     ->  [0-9] num
+num     ->  ε
+```
+ - word
+
+Remove Kleene star
+```
+word    ->  ([a-z] | [A-Z]) word
+word    ->  ε
+```
+Union
+```
+word    ->  [a-z] word
+word    ->  [A-Z] word
+word    ->  ε
+```
+ - fact
+ - expr
+
+
+<!-- ### Each Grammar to NFA
  - num
  
  ![NFA_num](scanner/image/nfa_num.png)
@@ -60,7 +85,7 @@ num     ::= [0-9]*
  ![NFA prog](scanner/image/nfa_prog_simple.png)
 
 ### Combining NFAs
-TODO.
+TODO.-->
 
 ## Parser
 TODO.
