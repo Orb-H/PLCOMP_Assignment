@@ -50,8 +50,8 @@ word	::= ([a-z] | [A-Z])+ ;
 num     ::= [0-9]+
 ```
 1. remove ε at block: ε can cause function without its body.
-2. change * to + at word and num: * can cause empty word and num, so that statements like 3+++4 is a correct grammar.
-<!-- ### Convert to Regular Grammar
+2. change * to + at word and num: * can cause empty word and num, so that statements like =3+++4 is a correct grammar.
+### Convert to Regular Grammar
  - num
 
 Remove Kleene star
@@ -63,19 +63,63 @@ num     ->  [0-9]
 
 Remove Kleene star
 ```
-word    ->  ([a-z] | [A-Z]) word
-word    ->  ε
+word    ->  [a-zA-Z] word
+word    ->  [a-zA-Z]
 ```
 Union
 ```
-word    ->  [a-z] word
-word    ->  [A-Z] word
-word    ->  ε
+word    ->  [a-zA-Z] word
+word    ->  [a-zA-Z]
 ```
+(consider \[a-zA-z] as __one__ kind of terminal)
  - fact
+
+Union
+```
+fact    ->  word
+fact    ->  num
+```
  - expr
 
-
+Remove recursion
+```
+expr    ->  fact ("+" fact)*
+```
+Remove Kleene star
+```
+expr    ->  fact exprA
+exprA   ->  ε
+exprA   ->  "+" fact exprA
+```
+Empty production
+```
+expr    ->  fact
+expr    ->  fact exprA
+exprA   ->  "+" fact
+exprA   ->  "+" fact exprA
+```
+Remove multiple non-terminals
+```
+expr    ->  fact
+expr    ->  exprB
+exprA   ->  "+" fact
+exprA   ->  "+" exprB
+exprB   ->  word exprA
+exprB   ->  num exprA
+```
+```
+expr    ->  fact
+expr    ->  exprB
+exprA   ->  "+" fact
+exprA   ->  "+" exprB
+exprB   ->  [a-zA-Z] exprA
+exprB   ->  [a-zA-Z] exprB
+exprB   ->  [0-9] exprA
+exprB   ->  [0-9] exprB
+```
+<!-- - cond
+```
+```
 <!-- ### Each Grammar to NFA
  - num
  
