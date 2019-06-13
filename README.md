@@ -114,8 +114,8 @@ exprA   ->  "+" fact
 exprA   ->  "+" exprB
 exprB   ->  [a-zA-Z] exprA
 exprB   ->  [a-zA-Z] exprB
-exprB   ->  [0-9] exprA
-exprB   ->  [0-9] exprB
+exprC   ->  [0-9] exprA
+exprC   ->  [0-9] exprC
 ```
 <!-- - cond
 ```
