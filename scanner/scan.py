@@ -32,8 +32,6 @@ def check_keyword(s):
     return 0
 
 def check_digit(s):
-    if len(s)==0:
-        return 0
     length=0
     if s[0] in digits:
         i=0
@@ -43,8 +41,6 @@ def check_digit(s):
     return 0
 
 def check_letter(s):
-    if len(s)==0:
-        return 0
     length=0
     if s[0] in letters:
         i=0
@@ -69,15 +65,11 @@ def scan(s):
             if a>0:
                 print('num '+s[0:a])
                 scan(s[a:])
-            elif a==-1:
-                return
             else:
                 a=check_letter(s)
                 if a>0:
                     print('word '+s[0:a])
                     scan(s[a:])
-                elif a==-1:
-                    return
                 else:
                     print('Lexer Error: Unknown Symbol')
         
