@@ -9,7 +9,7 @@ Team Assignment for 'Programming Language and Compiler' class
  - Parser
  - Code Generator
 
-## Scanner
+## Grammar
 ### Given Grammar
 ```
 prog    ::= word "(" ")" block ;
@@ -51,7 +51,15 @@ num     ::= [0-9]+
 ```
 1. remove ε at block: ε can cause function without its body.
 2. change * to + at word and num: * can cause empty word and num, so that statements like =3+++4 is a correct grammar.
-### Convert to Regular Grammar
+
+## Scanner
+ - Divide letters according to its usage
+   - word: \[a-zA-Z]+
+   - num: \[0-9]+
+   - keyword: IF, THEN, ELSE, WHILE
+   - separator: (, ), {, }, ;
+   - operator: +, >, <, =
+<!--### Convert to Regular Grammar
  - num
 
 Remove Kleene star
