@@ -61,6 +61,7 @@ num     ::= [0-9]+
    - operator: +, >, <, =
  - Tokenizing according to its type
    - Python - [scan.py](scanner/scan.py)
+   - C - [scan.c](scanner/scan.c)
 <!--### Convert to Regular Grammar
  - num
 
