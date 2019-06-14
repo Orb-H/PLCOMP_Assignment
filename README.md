@@ -103,107 +103,995 @@ fact 	::= num
         |   word ;
 ```
 ### SLR Parser
+1. DFA (start symbol P)
 ![State Diagram](parser/image/cfg_full.png)
-<!--### Convert to Regular Grammar
- - num
+For convenience, all syntax were symbolized as below.
 
-Remove Kleene star
+|original syntax|symbol|
+|:-------------:|:----:|
+|prog|P|
+|block|B|
+|slist|L|
+|stat|S|
+|cond|C|
+|expr|E|
+|fact|F|
+|IF|i|
+|THEN|t|
+|ELSE|e|
+|WHILE|h|
+|word|w|
+|num|n|
+With this symbol, grammar can be re-written as below.
 ```
-num     ->  [0-9] num
-num     ->  [0-9]
+P       ->  w "(" ")" B ;
+B       ->  "{" L "}"
+B       ->  "{" "}";
+L       ->  L S
+L       ->  S ;
+S   	->  i "(" C ")" t B e B
+S       ->  h "(" C ")" B
+S       ->  w "=" E ";" ;
+C   	->  E ">" E
+C       ->  E "<" E ;
+E   	->  F
+E       ->  E "+" F ;
+F   	->  n
+F       ->  w ;
 ```
- - word
-
-Remove Kleene star
+2. Follow of nonterminals
 ```
-word    ->  [a-zA-Z] word
-word    ->  [a-zA-Z]
+follow(P) = { $ }
+follow(B) = { e } ∪ follow(P) ∪ follow(S) = { e, $, '}', i, h, w }
+follow(L) = { '}' } ∪ first(S) = { '}', i, h, w}
+follow(S) = follow(L) = { '}', i, h, w}
+follow(C) = { ')' }
+follow(E) = { '>', '<' } ∪ follow(C) = { '>', '<', ')' }
+follow(F) = follow(E) = { '>', '<', ')' }
 ```
-Union
-```
-word    ->  [a-zA-Z] word
-word    ->  [a-zA-Z]
-```
-(consider \[a-zA-z] as __one__ kind of terminal)
- - fact
-
-Union
-```
-fact    ->  word
-fact    ->  num
-```
- - expr
-
-Remove recursion
-```
-expr    ->  fact ("+" fact)*
-```
-Remove Kleene star
-```
-expr    ->  fact exprA
-exprA   ->  ε
-exprA   ->  "+" fact exprA
-```
-Empty production
-```
-expr    ->  fact
-expr    ->  fact exprA
-exprA   ->  "+" fact
-exprA   ->  "+" fact exprA
-```
-Remove multiple non-terminals
-```
-expr    ->  fact
-expr    ->  exprB
-exprA   ->  "+" fact
-exprA   ->  "+" exprB
-exprB   ->  word exprA
-exprB   ->  num exprA
-```
-```
-expr    ->  fact
-expr    ->  exprB
-exprA   ->  "+" fact
-exprA   ->  "+" exprB
-exprB   ->  [a-zA-Z] exprA
-exprB   ->  [a-zA-Z] exprB
-exprC   ->  [0-9] exprA
-exprC   ->  [0-9] exprC
-```
-<!-- - cond
-```
-```
-<!-- ### Each Grammar to NFA
- - num
- 
- ![NFA_num](scanner/image/nfa_num.png)
- - word
- 
- ![NFA word](scanner/image/nfa_word.png)
- - fact
- 
- ![NFA fact](scanner/image/nfa_fact_simple.png)
- - expr
- 
- ![NFA expr](scanner/image/nfa_expr_simple.png)
- - cond
- 
- ![NFA cond](scanner/image/nfa_cond_simple.png)
- - stat
- 
- ![NFA stat](scanner/image/nfa_stat_simple.png)
- - slist
- 
- ![NFA slist](scanner/image/nfa_slist_simple.png)
- - block
- 
- ![NFA block](scanner/image/nfa_block_simple.png)
- - prog
- 
- ![NFA prog](scanner/image/nfa_prog_simple.png)
-
-### Combining NFAs
-TODO.-->
+3. Parsing table
+<table>
+    <tr>
+        <td rowspan=2 align=center>State</td>
+        <td colspan=15 align=center>Action</td>
+        <td colspan=7 align=center>Goto</td>
+    </tr>
+    <tr>
+        <td>n</td>
+        <td>w</td>
+        <td>i</td>
+        <td>t</td>
+        <td>e</td>
+        <td>h</td>
+        <td><</td>
+        <td>></td>
+        <td>=</td>
+        <td>+</td>
+        <td>(</td>
+        <td>)</td>
+        <td>{</td>
+        <td>}</td>
+        <td>$</td>
+        <td>B</td>
+        <td>L</td>
+        <td>S</td>
+        <td>C</td>
+        <td>E</td>
+        <td>F</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td/>
+        <td>S1</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td>S2</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td>S3</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td>S5</td>
+        <td/>
+        <td/>
+        <td>4</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td>A</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>26</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>27</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>28</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>29</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>30</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>31</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>32</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>33</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>34</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>35</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>36</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+    <tr>
+        <td>37</td>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+        <td/>
+    </tr>
+</table>
 
 ## Code Generator
 TODO.
