@@ -122,6 +122,7 @@ For convenience, all syntax were symbolized as below.
 |WHILE|h|
 |word|w|
 |num|n|
+
 With this symbol, grammar can be re-written as below.
 ```
 P       ->  w "(" ")" B ;
