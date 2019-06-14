@@ -103,6 +103,7 @@ fact 	::= num
         |   word ;
 ```
 ### SLR Parser
+![State Diagram](parser/image/cfg_full.png)
 <!--### Convert to Regular Grammar
  - num
 
