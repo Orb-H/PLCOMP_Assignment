@@ -60,9 +60,7 @@ num     ::= [0-9]+
    - separator: (, ), {, }, ;
    - operator: +, >, <, =
  - Tokenizing according to its type
-   - Python
-
-[scan.py](scanner/scan.py)
+   - Python - [scan.py](scanner/scan.py)
 <!--### Convert to Regular Grammar
  - num
 
