@@ -664,13 +664,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td>R11</td>
-        <td>R11</td>
+        <td>R10</td>
+        <td>R10</td>
         <td/>
         <td/>
         <td/>
         <td/>
-        <td>R11</td>
+        <td>R10</td>
         <td/>
         <td/>
         <td/>
