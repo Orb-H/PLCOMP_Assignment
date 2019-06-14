@@ -62,6 +62,47 @@ num     ::= [0-9]+
  - Tokenizing according to its type
    - Python - [scan.py](scanner/scan.py)
    - C - [scan.c](scanner/scan.c)
+
+## Parser
+### Grammar for Parser
+ - Tokens from scanner are terminals.
+ - Other things are non-terminals.
+ - Production rule is given in original grammar.
+ - Start Symbol is prog.
+```
+prog    ::= word "(" ")" block ;
+block   ::= "{" slist "}";
+slist   ::= slist stat
+        |   stat ;
+stat 	::= IF "(" cond ")" THEN block ELSE block
+        |   WHILE "(" cond ")" block
+        |   word "=" expr ";"
+        |   ;
+cond 	::= expr ">" expr
+        |   expr "<" expr ;
+expr 	::= fact
+        |   expr "+" fact ;	
+fact 	::= num
+        |   word ;
+```
+Remove ε
+```
+prog    ::= word "(" ")" block ;
+block   ::= "{" slist "}"
+        |   "{" "}";
+slist   ::= slist stat
+        |   stat ;
+stat 	::= IF "(" cond ")" THEN block ELSE block
+        |   WHILE "(" cond ")" block
+        |   word "=" expr ";" ;
+cond 	::= expr ">" expr
+        |   expr "<" expr ;
+expr 	::= fact
+        |   expr "+" fact ;	
+fact 	::= num
+        |   word ;
+```
+### SLR Parser
 <!--### Convert to Regular Grammar
  - num
 
@@ -162,9 +203,6 @@ exprC   ->  [0-9] exprC
 
 ### Combining NFAs
 TODO.-->
-
-## Parser
-TODO.
 
 ## Code Generator
 TODO.
