@@ -153,7 +153,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
 <table>
     <tr>
         <td rowspan=2 align=center>State</td>
-        <td colspan=15 align=center>Action</td>
+        <td colspan=16 align=center>Action</td>
         <td colspan=7 align=center>Goto</td>
     </tr>
     <tr>
@@ -167,6 +167,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td>></td>
         <td>=</td>
         <td>+</td>
+        <td>;</td>
         <td>(</td>
         <td>)</td>
         <td>{</td>
@@ -202,9 +203,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td/>
     </tr>
     <tr>
         <td>1</td>
+        <td/>
         <td/>
         <td/>
         <td/>
@@ -240,6 +243,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td/>
         <td>S3</td>
         <td/>
         <td/>
@@ -253,6 +257,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
     </tr>
     <tr>
         <td>3</td>
+        <td/>
         <td/>
         <td/>
         <td/>
@@ -291,6 +296,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td/>
         <td>A</td>
         <td/>
         <td/>
@@ -302,6 +308,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>5</td>
         <td/>
+        <td>S11</td>
+        <td>S9</td>
+        <td/>
+        <td/>
+        <td>S10</td>
         <td/>
         <td/>
         <td/>
@@ -310,15 +321,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S6</td>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>7</td>
+        <td>8</td>
         <td/>
         <td/>
         <td/>
@@ -326,6 +333,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>6</td>
         <td/>
+        <td>R2</td>
+        <td>R2</td>
+        <td/>
+        <td>R2</td>
+        <td>R2</td>
         <td/>
         <td/>
         <td/>
@@ -334,12 +346,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R2</td>
+        <td>R2</td>
         <td/>
         <td/>
         <td/>
@@ -350,6 +358,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>7</td>
         <td/>
+        <td>S11</td>
+        <td>S9</td>
+        <td/>
+        <td/>
+        <td>S10</td>
         <td/>
         <td/>
         <td/>
@@ -358,15 +371,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S12</td>
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>13</td>
         <td/>
         <td/>
         <td/>
@@ -374,6 +383,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>8</td>
         <td/>
+        <td>R4</td>
+        <td>R4</td>
+        <td/>
+        <td/>
+        <td>R4</td>
         <td/>
         <td/>
         <td/>
@@ -382,11 +396,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R4</td>
         <td/>
         <td/>
         <td/>
@@ -408,6 +418,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S14</td>
         <td/>
         <td/>
         <td/>
@@ -433,6 +444,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S15</td>
         <td/>
         <td/>
         <td/>
@@ -453,6 +465,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S16</td>
         <td/>
         <td/>
         <td/>
@@ -470,6 +483,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>12</td>
         <td/>
+        <td>R1</td>
+        <td>R1</td>
+        <td/>
+        <td>R1</td>
+        <td>R1</td>
         <td/>
         <td/>
         <td/>
@@ -478,12 +496,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R1</td>
+        <td>R1</td>
         <td/>
         <td/>
         <td/>
@@ -494,6 +508,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>13</td>
         <td/>
+        <td>R3</td>
+        <td>R3</td>
+        <td/>
+        <td/>
+        <td>R3</td>
         <td/>
         <td/>
         <td/>
@@ -502,11 +521,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R3</td>
         <td/>
         <td/>
         <td/>
@@ -517,6 +532,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
     </tr>
     <tr>
         <td>14</td>
+        <td>S20</td>
+        <td>S21</td>
         <td/>
         <td/>
         <td/>
@@ -534,13 +551,14 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>17</td>
+        <td>18</td>
+        <td>19</td>
     </tr>
     <tr>
         <td>15</td>
+        <td>S20</td>
+        <td>S21</td>
         <td/>
         <td/>
         <td/>
@@ -558,10 +576,9 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>22</td>
+        <td>18</td>
+        <td>19</td>
     </tr>
     <tr>
         <td>16</td>
@@ -585,7 +602,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
+        <td>23</td>
+        <td>19</td>
     </tr>
     <tr>
         <td>17</td>
@@ -601,6 +619,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S24</td>
         <td/>
         <td/>
         <td/>
@@ -619,9 +638,10 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S26</td>
+        <td>S25</td>
         <td/>
-        <td/>
-        <td/>
+        <td>S27</td>
         <td/>
         <td/>
         <td/>
@@ -643,12 +663,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>R11</td>
+        <td>R11</td>
         <td/>
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>R11</td>
         <td/>
         <td/>
         <td/>
@@ -667,12 +688,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>R12</td>
+        <td>R12</td>
         <td/>
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>R12</td>
         <td/>
         <td/>
         <td/>
@@ -691,12 +713,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>R13</td>
+        <td>R13</td>
         <td/>
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>R13</td>
         <td/>
         <td/>
         <td/>
@@ -721,6 +744,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S28</td>
         <td/>
         <td/>
         <td/>
@@ -743,7 +767,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
+        <td>S27</td>
+        <td>S29</td>
         <td/>
         <td/>
         <td/>
@@ -760,6 +785,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S30</td>
         <td/>
         <td/>
         <td/>
@@ -781,6 +807,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
     </tr>
     <tr>
         <td>25</td>
+        <td>S20</td>
+        <td>S21</td>
         <td/>
         <td/>
         <td/>
@@ -799,12 +827,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>31</td>
         <td/>
     </tr>
     <tr>
         <td>26</td>
+        <td>S20</td>
+        <td>S21</td>
         <td/>
         <td/>
         <td/>
@@ -823,12 +852,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>32</td>
         <td/>
     </tr>
     <tr>
         <td>27</td>
+        <td>S20</td>
+        <td>S21</td>
         <td/>
         <td/>
         <td/>
@@ -848,8 +878,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>33</td>
     </tr>
     <tr>
         <td>28</td>
@@ -865,10 +894,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S5</td>
         <td/>
         <td/>
         <td/>
-        <td/>
+        <td>34</td>
         <td/>
         <td/>
         <td/>
@@ -878,6 +908,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>29</td>
         <td/>
+        <td>R7</td>
+        <td>R7</td>
+        <td/>
+        <td/>
+        <td>R7</td>
         <td/>
         <td/>
         <td/>
@@ -886,11 +921,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R7</td>
         <td/>
         <td/>
         <td/>
@@ -914,9 +945,10 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S5</td>
         <td/>
         <td/>
-        <td/>
+        <td>35</td>
         <td/>
         <td/>
         <td/>
@@ -934,9 +966,10 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S27</td>
         <td/>
         <td/>
-        <td/>
+        <td>R8</td>
         <td/>
         <td/>
         <td/>
@@ -958,9 +991,10 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S27</td>
         <td/>
         <td/>
-        <td/>
+        <td>R9</td>
         <td/>
         <td/>
         <td/>
@@ -979,12 +1013,13 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>R11</td>
+        <td>R11</td>
         <td/>
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
+        <td>R11</td>
         <td/>
         <td/>
         <td/>
@@ -998,6 +1033,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>34</td>
         <td/>
+        <td>R6</td>
+        <td>R6</td>
+        <td/>
+        <td/>
+        <td>R6</td>
         <td/>
         <td/>
         <td/>
@@ -1006,11 +1046,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R6</td>
         <td/>
         <td/>
         <td/>
@@ -1025,6 +1061,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S36</td>
         <td/>
         <td/>
         <td/>
@@ -1058,9 +1095,10 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
+        <td>S5</td>
         <td/>
         <td/>
-        <td/>
+        <td>37</td>
         <td/>
         <td/>
         <td/>
@@ -1070,6 +1108,11 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td>37</td>
         <td/>
+        <td>R5</td>
+        <td>R5</td>
+        <td/>
+        <td/>
+        <td>R5</td>
         <td/>
         <td/>
         <td/>
@@ -1078,11 +1121,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
-        <td/>
+        <td>R5</td>
         <td/>
         <td/>
         <td/>
