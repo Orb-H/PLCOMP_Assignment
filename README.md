@@ -155,7 +155,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td rowspan=2 align=center>State</td>
         <td colspan=16 align=center>Action</td>
-        <td colspan=7 align=center>Goto</td>
+        <td colspan=6 align=center>Goto</td>
     </tr>
     <tr>
         <td>n</td>
