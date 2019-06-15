@@ -895,8 +895,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td>S5</td>
         <td/>
+        <td>S5</td>
         <td/>
         <td/>
         <td>34</td>
