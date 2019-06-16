@@ -3,6 +3,7 @@ operators=['+','>','<','=']
 keywords=['IF','THEN','ELSE','WHILE']
 digits=['0','1','2','3','4','5','6','7','8','9']
 letters=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+tokens=[]
 
 def check_separator(s):
     if s[0] in separators:
@@ -53,22 +54,27 @@ def scan(s):
     if len(s)==0:
         return
     if check_separator(s):
+        tokens.append(('separator',s[0]))
         scan(s[1:])
     elif check_operator(s):
+        tokens.append(('operator',s[0]))
         scan(s[1:])
     else:
         a=check_keyword(s)
         if a>0:
+            tokens.append(('keyword',s[0:a]))
             scan(s[a:])
         else:
             a=check_digit(s)
             if a>0:
                 print('num '+s[0:a])
+                tokens.append(('num',s[0:a]))
                 scan(s[a:])
             else:
                 a=check_letter(s)
                 if a>0:
                     print('word '+s[0:a])
+                    tokens.append(('word',s[0:a]))
                     scan(s[a:])
                 else:
                     print('Lexer Error: Unknown Symbol')
@@ -76,4 +82,8 @@ def scan(s):
 
 if __name__=="__main__":
     while True:
-        scan(input())
+        s=input()
+        if s=='.':
+            break
+        scan(s)
+    print(tokens)
