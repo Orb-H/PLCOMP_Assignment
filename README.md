@@ -125,20 +125,20 @@ For convenience, all syntax were symbolized as below.
 
 With this symbol, grammar can be re-written as below.
 ```
-P       ->  w "(" ")" B ;
+P       ->  w "(" ")" B
 B       ->  "{" L "}"
-B       ->  "{" "}";
+B       ->  "{" "}"
 L       ->  L S
-L       ->  S ;
+L       ->  S
 S   	->  i "(" C ")" t B e B
 S       ->  h "(" C ")" B
-S       ->  w "=" E ";" ;
+S       ->  w "=" E ";"
 C   	->  E ">" E
-C       ->  E "<" E ;
+C       ->  E "<" E
 E   	->  F
-E       ->  E "+" F ;
+E       ->  E "+" F
 F   	->  n
-F       ->  w ;
+F       ->  w
 ```
 2. Follow of nonterminals
 ```
@@ -155,7 +155,7 @@ follow(F) = follow(E) = { '>', '<', ')' }
     <tr>
         <td rowspan=2 align=center>State</td>
         <td colspan=16 align=center>Action</td>
-        <td colspan=7 align=center>Goto</td>
+        <td colspan=6 align=center>Goto</td>
     </tr>
     <tr>
         <td>n</td>
@@ -767,9 +767,9 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td/>
         <td>S27</td>
         <td>S29</td>
+        <td/>
         <td/>
         <td/>
         <td/>
@@ -895,8 +895,8 @@ follow(F) = follow(E) = { '>', '<', ')' }
         <td/>
         <td/>
         <td/>
-        <td>S5</td>
         <td/>
+        <td>S5</td>
         <td/>
         <td/>
         <td>34</td>
