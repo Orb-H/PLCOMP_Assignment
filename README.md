@@ -59,6 +59,13 @@ num     ::= [0-9]+
    - keyword: IF, THEN, ELSE, WHILE
    - separator: (, ), {, }, ;
    - operator: +, >, <, =
+ - Build a diagram for NFA
+ ![State Diagram(scanner) for NFA](scanner/image/nfa.png)
+   - Red: Separator
+   - Orange: Operator
+   - Yellow: Number
+   - Green: Word
+   - Blue: Keyword
  - Tokenizing according to its type
    - Python - [scan.py](scanner/scan.py)
    - C - [scan.c](scanner/scan.c)
@@ -104,7 +111,7 @@ fact 	::= num
 ```
 ### SLR Parser
 1. DFA (start symbol P)
-![State Diagram](parser/image/cfg_full.png)
+![State Diagram(parser)](parser/image/cfg_full.png)
 For convenience, all syntax were symbolized as below.
 
 |original syntax|symbol|
