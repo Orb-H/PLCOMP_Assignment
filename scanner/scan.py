@@ -21,16 +21,16 @@ def check_operator(s):
 
 
 def check_keyword(s):
-    if len(s) >= 2 and s[0:2] == keywords[0]:
+    if (len(s) == 2 and s[0:2] == keywords[0]) or (len(s) > 2 and s[0:2] == keywords[0] and s[2] not in letters):
         print('keyword IF')
         return 2
-    elif len(s) >= 4 and s[0:4] == keywords[1]:
+    elif (len(s) == 4 and s[0:4] == keywords[1]) or (len(s) > 4 and s[0:4] == keywords[1] and s[4] not in letters):
         print('keyword THEN')
         return 4
-    elif len(s) >= 4 and s[0:4] == keywords[2]:
+    elif (len(s) == 4 and s[0:4] == keywords[2]) or (len(s) > 4 and s[0:4] == keywords[2] and s[4] not in letters):
         print('keyword ELSE')
         return 4
-    elif len(s) >= 5 and s[0:5] == keywords[3]:
+    elif (len(s) == 5 and s[0:5] == keywords[3]) or (len(s) > 5 and s[0:5] == keywords[3] and s[5] not in letters):
         print('keyword WHILE')
         return 5
     return 0
