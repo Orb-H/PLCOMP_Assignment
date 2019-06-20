@@ -147,17 +147,27 @@ E       ->  E "+" F
 F   	->  n
 F       ->  w
 ```
-2. Follow of nonterminals
+2. First set of nonterminals
 ```
-follow(P) = { $ }
-follow(B) = { e } ∪ follow(P) ∪ follow(S) = { e, $, '}', i, h, w }
-follow(L) = { '}' } ∪ first(S) = { '}', i, h, w}
-follow(S) = follow(L) = { '}', i, h, w}
-follow(C) = { ')' }
-follow(E) = { '>', '<' } ∪ follow(C) = { '>', '<', ')' }
-follow(F) = follow(E) = { '>', '<', ')' }
+FIRST(P) = { w }
+FIRST(B) = { '{' }
+FIRST(L) = FIRST(S) = { i, h, w }
+FIRST(S) = { i, h, w }
+FIRST(C) = FIRST(C) = { n, w }
+FIRST(E) = FIRST(F) = { n, w }
+FIRST(F) = { n, w }
 ```
-3. Parsing table
+3. Follow set of nonterminals
+```
+FOLLOW(P) = { $ }
+FOLLOW(B) = { e } ∪ FOLLOW(P) ∪ FOLLOW(S) = { e, $, '}', i, h, w }
+FOLLOW(L) = { '}' } ∪ FIRST(S) = { '}', i, h, w }
+FOLLOW(S) = FOLLOW(L) = { '}', i, h, w }
+FOLLOW(C) = { ')' }
+FOLLOW(E) = { '>', '<' } ∪ FOLLOW(C) = { '>', '<', ')' }
+FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
+```
+4. Parsing table
 <table>
     <tr>
         <td rowspan=2 align=center>State</td>
