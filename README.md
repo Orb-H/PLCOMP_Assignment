@@ -845,7 +845,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ';', ')' }
         <td/>
         <td/>
         <td>31</td>
-        <td/>
+        <td>19</td>
     </tr>
     <tr>
         <td>26</td>
@@ -870,7 +870,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ';', ')' }
         <td/>
         <td/>
         <td>32</td>
-        <td/>
+        <td>19</td>
     </tr>
     <tr>
         <td>27</td>
