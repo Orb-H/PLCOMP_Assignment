@@ -153,7 +153,7 @@ FIRST(P) = { w }
 FIRST(B) = { '{' }
 FIRST(L) = FIRST(S) = { i, h, w }
 FIRST(S) = { i, h, w }
-FIRST(C) = FIRST(C) = { n, w }
+FIRST(C) = FIRST(E) = { n, w }
 FIRST(E) = FIRST(F) = { n, w }
 FIRST(F) = { n, w }
 ```
