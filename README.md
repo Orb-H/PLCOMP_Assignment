@@ -67,8 +67,7 @@ num     ::= [0-9]+
    - Green: Word
    - Blue: Keyword
 ### FILE
- - Python - [scan.py](scanner/scan.py)
- - C - [scan.c](scanner/scan.c)
+ [scan.py](scanner/scan.py)
 
 ## Parser
 ### Grammar for Parser
