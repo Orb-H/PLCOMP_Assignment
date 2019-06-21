@@ -36,7 +36,7 @@ class Scanner:
                     a = self.check_digit(s)
                     if a > 0:
                         # print('num ' + s[0:a])
-                        self.tokens.append(('num', s[0:a]))
+                        self.tokens.append(('number', s[0:a]))
                         s = s[a:]
                     else:
                         a = self.check_letter(s)
