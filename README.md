@@ -66,9 +66,9 @@ num     ::= [0-9]+
    - Yellow: Number
    - Green: Word
    - Blue: Keyword
- - Tokenizing according to its type
-   - Python - [scan.py](scanner/scan.py)
-   - C - [scan.c](scanner/scan.c)
+### FILE
+ - Python - [scan.py](scanner/scan.py)
+ - C - [scan.c](scanner/scan.c)
 
 ## Parser
 ### Grammar for Parser
@@ -1149,6 +1149,9 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
         <td/>
     </tr>
 </table>
+
+## FILE
+TODO.
 
 ## Code Generator
 TODO.
