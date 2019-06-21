@@ -163,8 +163,8 @@ FOLLOW(B) = { e } ∪ FOLLOW(P) ∪ FOLLOW(S) = { e, $, '}', i, h, w }
 FOLLOW(L) = { '}' } ∪ FIRST(S) = { '}', i, h, w }
 FOLLOW(S) = FOLLOW(L) = { '}', i, h, w }
 FOLLOW(C) = { ')' }
-FOLLOW(E) = { '>', '<' } ∪ FOLLOW(C) = { '>', '<', ')' }
-FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
+FOLLOW(E) = { '>', '<', ';' } ∪ FOLLOW(C) = { '>', '<', ';', ')' }
+FOLLOW(F) = FOLLOW(E) = { '>', '<', ';', ')' }
 ```
 4. Parsing table
 <table>
@@ -684,7 +684,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
         <td>R10</td>
         <td/>
         <td/>
-        <td/>
+        <td>R10</td>
         <td/>
         <td>R10</td>
         <td/>
@@ -709,7 +709,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
         <td>R12</td>
         <td/>
         <td/>
-        <td/>
+        <td>R12</td>
         <td/>
         <td>R12</td>
         <td/>
@@ -734,7 +734,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
         <td>R13</td>
         <td/>
         <td/>
-        <td/>
+        <td>R13</td>
         <td/>
         <td>R13</td>
         <td/>
@@ -1034,7 +1034,7 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ')' }
         <td>R11</td>
         <td/>
         <td/>
-        <td/>
+        <td>R11</td>
         <td/>
         <td>R11</td>
         <td/>
