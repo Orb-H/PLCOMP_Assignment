@@ -1,0 +1,15 @@
+main(){
+	a = 3;
+	IF(a < 3) THEN {
+		b = 4;
+		a = b + 3;
+	} ELSE {
+		c = 5;
+		c = a + c;
+		a = a + c;
+	}
+
+	WHILE(a>3){
+		a=a+1;
+	}
+}
