@@ -1,8 +1,8 @@
-# PLCOMP_Assignment
+﻿# PLCOMP_Assignment
 Team Assignment for 'Programming Language and Compiler' class
 
 ## Assignment File
-[File](Compiler_Project-2019.pdf)
+[File](file/Compiler_Project-2019.pdf)
 
 ## Things to do
  - Scanner
@@ -60,14 +60,14 @@ num     ::= [0-9]+
    - separator: (, ), {, }, ;
    - operator: +, >, <, =
  - Build a diagram for NFA
- ![State Diagram(scanner) for NFA](scanner/image/nfa.png)
+ ![State Diagram(scanner) for NFA](image/nfa.png)
    - Red: Separator
    - Orange: Operator
    - Yellow: Number
    - Green: Word
    - Blue: Keyword
 ### FILE
- [scan.py](scanner/scan.py)
+ [scan.py](file/scan.py)
 
 ## Parser
 ### Grammar for Parser
@@ -110,7 +110,7 @@ fact 	::= num
 ```
 ### SLR Parser
 1. DFA (start symbol P)
-![State Diagram(parser)](parser/image/cfg_full.png)
+![State Diagram(parser)](image/cfg_full.png)
 For convenience, all syntax were symbolized as below.
 
 |original syntax|symbol|
