@@ -47,7 +47,8 @@ class Scanner:
                         elif s[0] in self.whitespaces:
                             s = s[1:]
                         else:
-                            print('Lexer Error: Unknown Symbol')
+                            print('Lexer Error : Unknown Symbol(\'{}\')'.format(s[0]))
+                            sys.exit(0)
     
     def check_separator(self, s):
         if s[0] in self.separators:
@@ -79,7 +80,6 @@ class Scanner:
         return 0
 
     def check_digit(self, s):
-        length = 0
         if s[0] in self.digits:
             i = 0
             while i < len(s) and s[i] in self.digits:
@@ -88,7 +88,6 @@ class Scanner:
         return 0
     
     def check_letter(self, s):
-        length = 0
         if s[0] in self.letters:
             i = 0
             while i < len(s) and s[i] in self.letters:
@@ -110,7 +109,7 @@ class SymbolTable:
     
     def add_symbol(self, c):
         if self.find_symbol(c) == None:
-            self.d[c] = [None, None]
+            self.d[c] = [None, None, None]
     
     def find_symbol(self, c):
         return self.d.get(c)
@@ -122,9 +121,10 @@ class SymbolTable:
     
     def add_scope(self, c, scope):
         if self.d.get(c) == None:
-            raise Error("No such symbol in table")
-        elif self.d[c][0]==None:
-            self.d[c][0]=[scope]
+            print("No such symbol in table")
+            sys.exit(0)
+        elif self.d[c][0] == None:
+            self.d[c][0] = [scope]
         else:
             self.d[c][0].append(scope)
         
@@ -135,8 +135,23 @@ class SymbolTable:
     
     def set_value(self, c, value):
         if self.d.get(c) == None:
-            raise Error("No such symbol in table")
+            print("No such symbol in table")
+            sys.exit(0)
         self.d[c][1] = value
+        
+    def get_address(self, c):
+        if self.d.get(c) == None:
+            return None
+        if self.d[c][2] == None:
+            print("Not defined yet")
+            sys.exit(0)
+        return self.d[c][2]
+    
+    def set_address(self, c, addr):
+        if self.d.get(c) == None:
+            print("No such symbol in table")
+            sys.exit(0)
+        self.d[c][2] = addr
         
     def __str__(self):
         s = 'Name\tScope\tValue\n'
