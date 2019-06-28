@@ -1150,8 +1150,8 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ';', '+', ')' }
 </table>
 
 ### FILE
-[Parser File](file/parse.py)
+[parse.py](file/parse.py)
 
 ## Code Generator
 ### FILE
-[Generator File](file/generate.py)
+[generate.py](file/generate.py)
