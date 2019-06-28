@@ -1155,3 +1155,6 @@ FOLLOW(F) = FOLLOW(E) = { '>', '<', ';', '+', ')' }
 ## Code Generator
 ### FILE
 [generate.py](file/generate.py)
+
+## Notice
+This assignment is a team-project and every member in my team wrote a code according to their roles. However, all codes on this repository are written by Orb_H, and codes by other members are not uploaded here.
