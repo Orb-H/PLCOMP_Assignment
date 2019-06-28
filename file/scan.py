@@ -61,6 +61,7 @@ class Scanner:
             # print('operator ' + s[0])
             if s[0] == '=':
                 self.table.add_symbol(self.tokens[-1][1])
+                self.table.d[self.tokens[-1][1]][1] = 'Var'
             return True
         return False
 
@@ -127,36 +128,40 @@ class SymbolTable:
             self.d[c][0] = [scope]
         else:
             self.d[c][0].append(scope)
-        
-    def get_value(self, c):
+    
+    def get_type(self, c):
         if self.d.get(c) == None:
             return None
         return self.d[c][1]
     
-    def set_value(self, c, value):
+    def set_type(self, c, type):
         if self.d.get(c) == None:
             print("No such symbol in table")
             sys.exit(0)
-        self.d[c][1] = value
-        
-    def get_address(self, c):
-        if self.d.get(c) == None:
-            return None
-        if self.d[c][2] == None:
-            print("Not defined yet")
-            sys.exit(0)
-        return self.d[c][2]
-    
-    def set_address(self, c, addr):
-        if self.d.get(c) == None:
-            print("No such symbol in table")
-            sys.exit(0)
-        self.d[c][2] = addr
+        elif self.d[c][1] == None:
+            self.d[c][1] = type
         
     def __str__(self):
-        s = 'Name\tScope\tValue\n'
+        s = '# In this symbol table, scope is given as n.m.l..., where n is always \n'
+        s += '# and m and n are different according to scope. For example, variable\n'
+        s += '# b in example below will have scope 1.1, and c will have scope 1.2,\n'
+        s += '# and d will have scope 1.2.2.\n'
+        s += '# main() {\n'
+        s += '# \ta = 3;\n'
+        s += '# \tIF(a > 2)\n'
+        s += '# \tTHEN {\n'
+        s += '# \t\tb = 4;\n'
+        s += '# \t} ELSE {\n'
+        s += '# \t\tc = 5;\n'
+        s += '# \t\tIF(c > 4)\n'
+        s += '# \t\tTHEN {} ELSE {\n'
+        s += '# \t\t\td = 1;\n'
+        s += '# \t\t}\n'
+        s += '# \t}\n'
+        s += '# }\n\n'
+        s += 'Name\tType\tScope\n'
         for i in self.d.keys():
-            s += i + '\t' + str(self.get_scope(i)) + '\t' + str(self.get_value(i)) + '\n'
+            s += i + '\t' + str(self.get_type(i)) + '\t' + str(self.get_scope(i)) + '\n'
         return s
 
 
